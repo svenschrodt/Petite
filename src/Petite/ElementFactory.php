@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 /**
- * Element
+ * \Petite\Element
  *  
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -13,7 +13,7 @@
  */
 namespace Petite;
 
-class Element
+class ElementFactory
 {
     
    public static function img($uri)
@@ -21,5 +21,10 @@ class Element
        return '<img src="'.$uri.'">';
    }
     
+   
+   public static function getElement(string $name, array $attribs, $content = null)
+   {
+       $ele = new HtmlElement($data);
+   }
    
 }

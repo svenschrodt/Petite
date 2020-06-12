@@ -52,7 +52,7 @@ class Request
     {
         if (php_sapi_name() === 'cli') {
             
-            //@TODO get Mock/Stub data for testing purposes
+            //@TODO get Mock/Stub data for testing purposes, if not in http context
             return;
         }
        

@@ -154,13 +154,11 @@ class ApacheRouter implements RouterInterface
      */
     private function init()
     {
-        
-        
-        //'REQUEST_URI' => string '/projects/Petite/DAta/apply?foo=SVen&Bar=42' (length=43)
-        //'SCRIPT_NAME' => string '/projects/Petite/index.php' (length=26)
-//         var_dump($_SERVER);die;
-        
-        
+        if (php_sapi_name() === 'cli') {
+            
+            //@TODO get Mock/Stub data for testing purposes, if not in http context
+            return;
+        }
         $path = $_SERVER['REQUEST_URI'];
         if(strstr($path, '?')) {
             $tmp = explode('?',$path);

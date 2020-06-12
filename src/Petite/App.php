@@ -80,11 +80,9 @@ class App
             
             //@todo DI for different http server routing 
             $this->router = ApacheRouter::getInstance();
+            
             $this->controller = $this->router->getController();
             $this->action = $this->router->getAction();
-            
-//             if ($this->appName != self::MOCK_APP) {
-//                 $this->_checkApplicationSanity();
             
             $this->request = new Request();
             $this->response = new Response();
