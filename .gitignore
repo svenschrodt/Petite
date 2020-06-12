@@ -1,0 +1,24 @@
+# P7Tools .gitignore
+#
+# exclude IDE etc.specific 
+.settings
+.project
+.buildpath
+
+# exclude project specific temp. deprecated resources
+*.depr
+/tmp
+
+# exclude 3rd party stuff
+/vendor
+composer.json
+composer.lock
+
+# exclude local functional testing resources
+index.php
+.htaccess
+post.html
+# exclude local configuration
+.local.conf.php 
+
+

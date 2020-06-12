@@ -1,0 +1,7 @@
+language: php
+php:
+  - 7.2
+
+  # omitting "script:" will default to phpunit
+script: phpunit --configuration phpunit.xml
+
