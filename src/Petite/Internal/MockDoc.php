@@ -3,7 +3,8 @@ declare(strict_types = 1);
 /**
  * \Petite\Internal\MockDoc
  *
- * Internally used for representation of an instance of hidden \DOMDocument Singleton
+ * Internally used for representation of an instance of hidden \DOMDocument Singleton,
+ * allowing us internal use of PHP's DOM API
  *
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -19,8 +20,15 @@ namespace Petite\Internal;
 final class MockDoc
 {
 
+    /**
+     * Internally uses static instance of 
+     * @var \DOMDocument
+     */
     protected static $instance = null;
 
+    /**
+     * Private constructor function
+     */
     private function __construct()
     {}
 
@@ -31,7 +39,10 @@ final class MockDoc
         }
         return self::$instance;
     }
-
+    
+    /**
+     * Private clone interceptor function
+     */
     private function __clone()
     {}
 }
