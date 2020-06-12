@@ -21,7 +21,7 @@ class BasicTest extends \PHPUnit\Framework\TestCase
     }
     public function testInstatiationOfBar()
     {
-        $foo = new \Petite\Internal\HtmlElement('h2', [], 'FOO');
+        $foo = new \Petite\Internal\HtmlElement('h2', 'FOO', []);
         $this->assertTrue(is_object($foo));
         
     }
