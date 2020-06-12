@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * Tiny class for rendering HTML 5 document templates
+ * Tiny class for rendering HTML 5 document templates (managing 'View' part)
  *  
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -27,7 +27,7 @@ class Document
      *
      * @var string
      */
-    protected $tpl = 'tpl/document.php';
+    protected $tpl = 'Tpl/document.php';
 
     /**
      * Generic constructor function
