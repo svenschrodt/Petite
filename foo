@@ -1,6 +1,5 @@
 .
 ├── Bootstrap.php
-├── foo
 ├── index.php
 ├── LICENSE
 ├── phpunit.withLog.xml
@@ -25,7 +24,6 @@
 │       └── Tpl
 │           ├── document.php
 │           └── foo.php
-├── temp.txt
 ├── test
 │   └── Petite
 │       ├── AppTest.php
@@ -35,6 +33,6 @@
 │       │   ├── RequestTest.php
 │       │   └── ResponseTest.php
 │       └── readme.md
-└── tmp.php
+└── 
 
 7 directories, 30 files

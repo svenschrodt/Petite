@@ -23,7 +23,7 @@
  */
 namespace Petite\Internal;
                             
-class ApacheRouter implements RouterInterface
+final class ApacheRouter implements RouterInterface
 {
 
     /**
@@ -98,6 +98,19 @@ class ApacheRouter implements RouterInterface
      * @var string
      */
     private $index = 'index.php';
+    
+    /**
+     * Default name of controller
+     * @var string
+     */
+    private $defaultController = 'default';
+
+    /**
+     * Default name of Action
+     * @var string
+     */
+    private $defaultAction = 'default';
+    
 
     /**
      * Private constructor function for being Router Singleton
@@ -112,7 +125,7 @@ class ApacheRouter implements RouterInterface
     /**
      * Getting single/same instance of this Router by run time
      *
-     * @return \P7Tools\Mvc\Router
+     * @return \Petite\Internal\RouterInterface
      */
     public static function getInstance()
     {
@@ -177,13 +190,13 @@ class ApacheRouter implements RouterInterface
         switch (count($applicationParts)) {
             case 0: // no controller and action given -> both default
 
-                $this->controller = 'default';
-                $this->action = 'default';
+                $this->controller = $this->defaultController;
+                $this->action = $this->defaultAction;
                 break;
                 
             case 1: // no action given -> default
                 $this->controller = array_shift($applicationParts);
-                $this->action = 'default';
+                $this->action = $this->defaultAction;
                 break;
                 
             default: // all other URIs
