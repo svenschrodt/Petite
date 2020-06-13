@@ -15,16 +15,25 @@
  */
 namespace Petite;
 use \Petite\Internal\HtmlElement;
+use \Petite\Internal\Html5Spec;
+use \Petite\Internal\Errors;
 
 class HtmlFactory
 {
+    
+    /**
+     * 
+     * @var \Petite\Internal\Html5Spec
+     */
+    protected $spec;
+    
     /**
      * Constructor function 
      * 
      */
     public function __construct()
     {
-        
+        $this->spec = new Html5Spec();
     }
     
     /**
@@ -52,7 +61,13 @@ class HtmlFactory
     
     public function __call($name, $args)
     {
-        return new HtmlElement($name, $args[0], $args[1]);
+        
+        if($this->spec->isElement($name)) {
+            return new HtmlElement($name, $args[0], $args[1]);
+        } else {
+            throw new \InvalidArgumentException(sprintf(Errors::INVALID_HTML_ELEMENT, $name, implode(', ', $this->spec->getElements())));
+        }
+        
     }
    
 }

@@ -18,6 +18,7 @@
 namespace Petite;
 
 use Petite\HtmlFactory;
+use Petite\Internal\Errors;
 
 class Document
 {

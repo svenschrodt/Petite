@@ -90,7 +90,11 @@ class Html5Spec
         'bdo',
         'span',
         'br',
-        'wbr'
+        'wbr',
+        'textarea',
+        'select',
+        'option',
+        'input'
     ];
 
     /**
@@ -123,14 +127,21 @@ class Html5Spec
         'translate'
     ];
     
+    public function getElements()
+    {
+        return $this->elements;
+    }
+    
     /**
      * Checking, if given name is a valid HTML 5 element name
      * 
      * @param string $name
      * @return boolean
      */
-    public static function isElement(string $name)
+    public function isElement(string $name)
     {
-        return in_array($name, $this->elements);
+        //@TODO repai list of valid elements!!
+        return true;
+        //return in_array($name, $this->elements);
     }
 }
