@@ -19,7 +19,7 @@ index.php
 .htaccess
 post.html
 temp.txt
-
+tmp.php
 # exclude local configuration
 .local.conf.php 
 

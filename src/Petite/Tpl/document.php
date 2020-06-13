@@ -3,12 +3,19 @@
 <head>
 <title><?= $this->title?></title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href='style/main.css' rel='stylesheet'>
 </head>
 <body>
-<?= $this->content?>
 
-	<script src="/script/main.js"></script>
+<?= $this->content?>
+<?php 
+$dta = ['nada' => 'Nullo', 'one'=>'eins', 'deux' =>'zwei', 'quattro' => 'vier'];
+echo $this->helper->select('FOO', $dta, []);
+echo $this->helper->h1('BERTA', ['id'=>'main', 'class' => 'imp']);
+
+echo $this->helper->p('Lorem Ipsum dolorit amet Foo 43 ', ['style'=>'border: 4px double blue']);
+
+echo $this->helper->textarea('Sven', ['name' => 'Foo', 'style'=>'border: 4px solid black']);
+?>
+<footer>creation time: <?= date('d.m.Y H:i:s');?></footer>
 </body>
 </html>

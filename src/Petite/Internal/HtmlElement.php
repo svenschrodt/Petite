@@ -16,9 +16,16 @@ declare(strict_types = 1);
  * @copyright Sven Schrodt<sven@schrodt-service.net>
  */
 namespace Petite\Internal;
+use \Petite\Internal\StringHelper;
 
 class HtmlElement
 {
+    
+    /**
+     * Flag, for HTML source formating
+     * @var boolean
+     */
+    protected $beautify = true;
     
     /**
      * Name of current element 
@@ -88,7 +95,12 @@ class HtmlElement
     public function __toString(): string
     {
         // Canonicalize nodes to a string @see https://www.php.net/manual/en/domnode.c14n.php
-        return $this->ele->C14N();
+        if($this->beautify) {
+            return StringHelper::formatCode($this->ele->C14N());
+        } else {
+            return $this->ele->C14N();
+        }
+        
     }
 
     /**

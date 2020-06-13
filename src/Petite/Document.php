@@ -17,9 +17,13 @@
 
 namespace Petite;
 
+use Petite\HtmlFactory;
+
 class Document
 {
 
+    protected $helper;
+    
     /**
      * Default document title
      * 
@@ -46,7 +50,7 @@ class Document
      */
     public function __construct()
     {
-        // @TODO wtf?
+        $this->helper = new HtmlFactory();
     }
 
     /**
@@ -85,16 +89,21 @@ class Document
      * @param boolean $buffer
      * @return string
      */
-    public function render($buffer = false) : string
+    public function render($buffer = false)
     {
+        // Setting default properties, if necessary
         $this->sanitizeProperties();
+        
+        // Buffering output for returning? 
         if ($buffer) {
             ob_start();
             $content = ob_get_contents();
         }
-
+        
+        // including template file for direct output or buffering
         require_once $this->tpl;
         
+        // Buffering output for returning? 
         if ($buffer) {
             ob_end_flush();
             return $content;
@@ -115,12 +124,16 @@ class Document
     /**
      * Setting template file for current view | document |*-resource
      * 
+     * 
+     * @TODO repair pathing!!
+     * 
      * @param string $tpl
      * @throws \InvalidArgumentException
      * @return \Petite\Document
      */
     public function setTpl(string $tpl) : \Petite\Document
     {
+        die(getcwd());
         if(!file_exists($tpl)) {
             throw new \InvalidArgumentException(sprintf(Errors::TEMPLATE_NOT_FOUND, $tpl, getcwd()));
         }
@@ -134,10 +147,11 @@ class Document
      */
     protected function sanitizeProperties()
     {
+        // Setting default document title
         if (! isset($this->title)) {
             $this->title = self::TITLE;
         }
-
+        // Setting default document content (HTML body)
         if (! isset($this->content)) {
             $this->content = self::CONTENT;
         }

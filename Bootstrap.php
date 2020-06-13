@@ -36,7 +36,7 @@ spl_autoload_register(function ($className) {
            
             require_once $file;
         } else { // throw exception, if not
-            throw new \Exception("NO SUCH FILE OR DIRECTORY: {$file} {$className}");
+            throw new \Exception("NO SUCH FILE OR DIRECTORY: {$file} \n class: {$className}");
         }
     }
     
