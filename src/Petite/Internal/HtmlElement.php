@@ -224,7 +224,7 @@ class HtmlElement
     
     
     /**
-     * Settin (new) value for ID attribute of current element
+     * Setting (new) value for ID attribute of current element
      * 
      * @param string $name
      * @return \Petite\Internal\HtmlElement
