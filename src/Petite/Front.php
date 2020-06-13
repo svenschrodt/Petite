@@ -1,7 +1,10 @@
 <?php declare(strict_types = 1);
 
 /**
- * Foundation class representing front controller(s) - managing the 'controller' part of MVC 
+ * \Petite\Front 
+ * 
+ * Foundation class representing front controller(s) - managing the 'controller' 
+ * part of MVC 
  *  
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -13,7 +16,7 @@
  * @copyright Sven Schrodt<sven@schrodt-service.net>
  */
 
-namespace Petite\Internal;
+namespace Petite;
 
 class Front
 {

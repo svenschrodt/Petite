@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 
 /**
+ * \Petite\Errors
+ * 
  * Class holding error messages
  *  
  * @package Petite
@@ -16,5 +18,11 @@ namespace Petite;
 
 class Errors
 {
+    /**
+     * Error message for non-existing template files for usage 
+     * with *printf functions
+     * 
+     * @var string
+     */
     const TEMPLATE_NOT_FOUND = 'Template file %s not found in %s';
 }

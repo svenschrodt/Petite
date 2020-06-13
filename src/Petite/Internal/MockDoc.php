@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 /**
  * \Petite\Internal\MockDoc
  *
@@ -32,6 +31,9 @@ final class MockDoc
     private function __construct()
     {}
 
+    /**
+     * Static getter for singleton instance of Petite\Internal\MockDoc
+     */
     public static function getInstance()
     {
         if (is_null(self::$instance)) {

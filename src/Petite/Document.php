@@ -1,7 +1,9 @@
 <?php declare(strict_types = 1);
 
 /**
- * Tiny class for rendering HTML 5 document templates (managing 'View' part)
+ * \Petite\Document
+ * 
+ * Tiny class for rendering HTML 5 document templates - managing 'View' part of MVC
  *  
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -18,9 +20,19 @@ namespace Petite;
 class Document
 {
 
-    const TITLE = 'No Title';
+    /**
+     * Default document title
+     * 
+     * @var string
+     */
+    const TITLE = 'No Title today';
 
-    const CONTENT = 'No Content';
+    /**
+     * Default document content
+     * 
+     * @var string
+     */
+    const CONTENT = 'No Content yet';
 
     /**
      * Default HTML 5 document template
@@ -43,9 +55,9 @@ class Document
      *
      * @param string $key
      * @param string $val
-     * @return Document
+     * @return \Petite\Document
      */
-    public function assigns(string $key, string $val)
+    public function assigns(string $key, string $val) : \Petite\Document
     {
         $this->$key = $val;
         return $this;
@@ -56,9 +68,9 @@ class Document
      * with current value
      *
      * @param array $data
-     * @return Document
+     * @return \Petite\Document
      */
-    public function assign(array $data)
+    public function assign(array $data) : \Petite\Document
     {
         foreach ($data as $key => $val) {
             $this->$key = $val;
@@ -73,7 +85,7 @@ class Document
      * @param boolean $buffer
      * @return string
      */
-    public function render($buffer = false)
+    public function render($buffer = false) : string
     {
         $this->sanitizeProperties();
         if ($buffer) {
@@ -95,18 +107,26 @@ class Document
      * 
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->render(true);
     }
 
-    public function setTpl(string $tpl)
+    /**
+     * Setting template file for current view | document |*-resource
+     * 
+     * @param string $tpl
+     * @throws \InvalidArgumentException
+     * @return \Petite\Document
+     */
+    public function setTpl(string $tpl) : \Petite\Document
     {
         if(!file_exists($tpl)) {
             throw new \InvalidArgumentException(sprintf(Errors::TEMPLATE_NOT_FOUND, $tpl, getcwd()));
         }
         
         $this->tpl = $tpl;
+        return $this;
     }
     
     /**

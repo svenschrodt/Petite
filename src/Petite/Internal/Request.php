@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 /**
  * Class representing http request(s)
@@ -33,18 +32,29 @@ class Request
         $this->init();
     }
 
+    /**
+     * Getter for used HTTP method of current request 
+     * 
+     * @return NULL|string
+     */
     public function getMethod()
     {
         return $this->getMetaInfo('method');
     }
 
-    public function getMetaInfo($key)
+    /**
+     * Getter for meta information on current HTTP context
+     * 
+     * @param string $key
+     * @return array
+     */
+    public function getMetaInfo(string $key) : array 
     {
-        return $this->meta[$key] ?? null;
+        return $this->meta[$key] ?? [];
     }
 
     /**
-     * Getting meta information from http context
+     * Getting meta information for current HTTP context from super globals
      *
      * @todo Do more commenting
      */
@@ -57,7 +67,6 @@ class Request
         }
        
         $this->meta = array(
-
             'queryString' => $_SERVER['QUERY_STRING'],
             'uri' => $_SERVER['REQUEST_URI'],
             'method' => $_SERVER['REQUEST_METHOD'],

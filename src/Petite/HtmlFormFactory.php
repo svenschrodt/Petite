@@ -2,7 +2,7 @@
 /**
  * \Petite\HtmlFormFactory 
  * 
- * Factory class for building HTML 5 form [element] s
+ * Factory class for building HTML 5 form element(s)
  *  
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>

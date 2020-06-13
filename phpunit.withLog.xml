@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/**
- * Configuration for PHPUnit testing
- * @package Petite
- * @author Sven Schrodt<sven@schrodt-service.net>
- * @version 0.1
- * @since 2020-06-10
- * @link https://github.com/svenschrodt/Petite
- * @link https://travis-ci.org/github/svenschrodt/Petite
- * @license https://github.com/svenschrodt/Petite/blob/master/LICENSE.md
- * @copyright Sven Schrodt<sven@schrodt-service.net>
-*/-->
+<!-- 
+	Configuration for PHPUnit testing 
+    @package Petite 
+    @author  Sven Schrodt<sven@schrodt-service.net> 
+    @version 0.1
+    @since 2020-06-10 
+	@link https://github.com/svenschrodt/Petite * @link https://travis-ci.org/github/svenschrodt/Petite 
+	@license https://github.com/svenschrodt/Petite/blob/master/LICENSE.md * 
+	@copyright Sven Schrodt<sven@schrodt-service.net>
+-->
 
 
 <phpunit bootstrap="Bootstrap.php" colors="true" verbose="true">
 	<php>
-        <env name="PROJECT_NAME" value="Petite"/>
-    </php>
+		<env name="PROJECT_NAME" value="Petite" />
+	</php>
 
-    <testsuites>
-        <testsuite name="Testing Petite">
-            <directory>./test/</directory>
-        </testsuite>
-    </testsuites>
-  <!--  Rules for code coverage -->
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>public</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-    <logging>
-  <log type="coverage-html" target="/tmp/report" lowUpperBound="35"
-       highLowerBound="70"/>
-  <log type="coverage-clover" target="/tmp/coverage.xml"/>
-  <log type="coverage-php" target="/tmp/coverage.serialized"/>
-  <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
-  <log type="junit" target="/tmp/logfile.xml"/>
-  <log type="testdox-html" target="/tmp/testdox.html"/>
-  <log type="testdox-text" target="/tmp/testdox.txt"/>
-</logging>
+	<testsuites>
+		<testsuite name="Testing Petite">
+			<directory>./test/</directory>
+		</testsuite>
+	</testsuites>
+
+	<!-- Rules for code coverage -->
+	<filter>
+		<whitelist>
+			<directory>./</directory>
+			<exclude>
+				<directory>public</directory>
+			</exclude>
+		</whitelist>
+	</filter>
+	<logging>
+		<log type="coverage-html" target="/tmp/report" lowUpperBound="35"
+			highLowerBound="70" />
+		<log type="coverage-clover" target="/tmp/coverage.xml" />
+		<log type="coverage-php" target="/tmp/coverage.serialized" />
+		<log type="coverage-text" target="php://stdout"
+			showUncoveredFiles="true" />
+		<log type="junit" target="/tmp/logfile.xml" />
+		<log type="testdox-html" target="/tmp/testdox.html" />
+		<log type="testdox-text" target="/tmp/testdox.txt" />
+	</logging>
 </phpunit>

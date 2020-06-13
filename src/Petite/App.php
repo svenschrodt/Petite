@@ -28,7 +28,7 @@ class App
      *
      * @var string
      */
-    const MOCK_APP = 'Petite dry-run app ';
+    const MOCK_APP = 'Petite dry-run app';
     
     /**
      * Name of current application
@@ -72,7 +72,11 @@ class App
      */
     protected $action;
     
-        
+        /**
+         * Constructor function 
+         * 
+         * @param string $appName
+         */
         public function __construct(string $appName = self::MOCK_APP)
         {
             
@@ -81,31 +85,53 @@ class App
             //@todo DI for different http server routing 
             $this->router = ApacheRouter::getInstance();
             
+            // Setting up, controller, action function and parameters from current request
             $this->controller = $this->router->getController();
             $this->action = $this->router->getAction();
-            
+       
+            // Setting up request and response object
             $this->request = new Request();
             $this->response = new Response();
         }
         
+        /**
+         * Setting up response as JSON
+         */
         public function setJson()
         {
             $this->response->setType('application/json');
         }
         
+        /**
+         * Setting up response as XML
+         */
         public function setXml()
         {
             $this->response->setType('application/xml');
         }
         
+        /**
+         * (Re-)Setting up response as HTML
+         */
         public function setHtml()
         {
             $this->response->setType('text/html');
         }
         
+        /**
+         * Setting up response as Javascript
+         */
         public function setJavascript()
         {
             $this->response->setType('text/javascript');
+        }
+        
+        /**
+         * Setting up response as plain text
+         */
+        public function setPlainText()
+        {
+            $this->response->setType('text/plain');
         }
    
 }
