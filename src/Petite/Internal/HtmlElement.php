@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 /**
- * \Petite\Internal\HtmlHelper
+ * \Petite\Internal\HtmlElement 
  *
- * Representing instances of (nested) HTML elements internally using PHP's DOM API
- * @see https://www.php.net/manual/en/book.dom.php
+ * Representing instances of (nested) HTML elements internally using PHP's DOM API (@see https://www.php.net/manual/en/book.dom.php)
+ * 
  *
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -19,30 +19,60 @@ namespace Petite\Internal;
 
 class HtmlElement
 {
+    
     /**
-     * Internally used instance of 
+     * Name of current element 
+     * 
+     * @var string
+     */
+    protected $name = '';
+    
+   /**
+    * Array holding class name(s) for current element
+    * 
+    * @var array
+    */
+    protected $class = [];
+    
+    /**
+     * Optional name of current element's ID
+     * 
+     * @var string | null
+     */
+    protected $id = null;
+    
+    /**
+     * Internally used instance of
+     *
      * @var \DOMDocument
      */
     protected $doc = null;
 
     /**
      * Internally used instance of
+     *
      * @var \DOMElement
      */
     protected $ele = null;
 
+    /**
+     * Constructor function 
+     *
+     * @param string $name
+     * @param mixed $content
+     * @param array $attribs
+     */
     public function __construct(string $name, $content = null, array $attribs = [])
     {
+       
+        $this->name = $name;
         // We just do that, because DOM*-API forces us to so - otherwise DOMNode instances would be read only
         $this->doc = MockDoc::getInstance();
         $this->ele = new \DOMElement($name);
         $this->doc->appendChild($this->ele);
 
-        // if we do have attributes, we will give them to the current element
-        foreach ($attribs as $key => $val) {
-            $this->ele->setAttribute($key, $val);
-        }
-
+        $this->setAttributes($attribs);
+        
         // No content, no problem and vice versa!
         if (! is_null($content)) {
             $this->ele->appendChild($this->ensureDomNode($content));
@@ -55,10 +85,47 @@ class HtmlElement
      *
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         // Canonicalize nodes to a string @see https://www.php.net/manual/en/domnode.c14n.php
         return $this->ele->C14N();
+    }
+
+    /**
+     * Setting value for attribute 
+     * 
+     * @param string $key
+     * @param string $val
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function setAttribute(string $key, string $val) : \Petite\Internal\HtmlElement
+    {
+        $this->ele->setAttribute($key, $val);
+        return $this;
+    }
+
+    /**
+     * Setting attributes 
+     * 
+     * @param array $attribs
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function setAttributes(array $attribs) : \Petite\Internal\HtmlElement
+    {
+        
+        // if we do have attributes, we will give them to the current element
+        foreach ($attribs as $key => $val) {
+            $this->ele->setAttribute($key, $val);
+            switch(mb_strtolower($key)) {
+                case 'class' :
+                    $this->addClass($val);
+                    break;
+                case 'id' :
+                    $this->setId($val);
+                    break;
+            }
+        }
+        return $this;
     }
 
     /**
@@ -84,12 +151,108 @@ class HtmlElement
                 return new \DOMNode();
         }
     }
+    
+    /**
+     * Appending child node to current element
+     * 
+     * @param mixed $node
+     *v
+     */
+    public function appendChild($node) : \Petite\Internal\HtmlElement
+    {
+        $this->ele->appendChild($this->ensureDomNode($node));
+        return $this;
+    }
 
     /**
-     * Returning (internally used) instance of 
-     * @return DOMElement
+     * Appending list of child nodes to current element 
+     * 
+     * @param array $nodeList
+     * @return \Petite\Internal\HtmlElement
      */
-    public function __toDomElement()
+    public function appendChildren(array $nodeList) : \Petite\Internal\HtmlElement
+    {
+        foreach($nodeList as $node) {
+            $this->appendChild($node);
+        }
+        return $this;
+    }
+    
+    /**
+     * Addig class to element 
+     * 
+     * @param string $name
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function addClass(string  $name) : \Petite\Internal\HtmlElement
+    {
+        if(in_array($name, $this->class)) {
+            return $this;
+        } else {
+            $this->class[] = $name;
+            // Setting new attribute value for class to internal \DOMElement
+            $this->setAttribute('class', implode(' ', $this->class));
+        }
+        return $this;
+    }
+    
+    /**
+     * Removing class from  element
+     *  
+     * @param string $name
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function removeClass(string $name) : \Petite\Internal\HtmlElement
+    {
+        if (($key = array_search($name, $this->class)) !== false) {
+            unset($this->class[$key]);
+            // Setting new attribute value for class to internal \DOMElement
+            $this->setAttribute('class', implode(' ', $this->class));
+        }
+        return $this;
+    }
+    
+    /**
+     * Returning array with class name(s) for current element
+     * 
+     * @return array
+     */
+    public function getClass() : array
+    {
+        return $this->class;
+    }
+    
+    
+    /**
+     * Settin (new) value for ID attribute of current element
+     * 
+     * @param string $name
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function setId(string $name) : \Petite\Internal\HtmlElement
+    {
+        $this->id = $name;
+        // Setting new attribute value for id to internal \DOMElement
+        $this->setAttribute('id',$name); 
+        return $this;
+    }
+    
+    /**
+     * Getting attribute value for ID of current element 
+     * 
+     * @return string
+     */
+    public function getId() : string
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Returning (internally used) instance of
+     *
+     * @return \DOMElement
+     */
+    protected function __toDomElement() : \DOMElement
     {
         return $this->ele;
     }

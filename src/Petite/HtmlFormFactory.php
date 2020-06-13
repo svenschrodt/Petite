@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 /**
- * \Petite\Element
+ * \Petite\HtmlFormFactory 
+ * 
+ * Factory class for building HTML 5 form [element] s
  *  
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -13,18 +15,9 @@
  */
 namespace Petite;
 
-class ElementFactory
+class HtmlFormFactory
 {
     
-   public static function img($uri)
-   {
-       return '<img src="'.$uri.'">';
-   }
-    
    
-   public static function getElement(string $name, array $attribs, $content = null)
-   {
-       $ele = new HtmlElement($data);
-   }
    
 }
