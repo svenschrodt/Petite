@@ -29,7 +29,7 @@ final class ApacheRouter implements RouterInterface
     /**
      * Current instance of Router (Singleton)
      *
-     * @var \Petite\Internal\Router | null
+     * @var \Petite\Internal\RouterInterface | null
      */
     private static $_instance = null;
 
@@ -194,7 +194,7 @@ final class ApacheRouter implements RouterInterface
                 $this->action = $this->defaultAction;
                 break;
                 
-            case 1: // no action given -> default
+            case 1: // no action given -> default action
                 $this->controller = array_shift($applicationParts);
                 $this->action = $this->defaultAction;
                 break;
@@ -203,6 +203,7 @@ final class ApacheRouter implements RouterInterface
                 $this->controller = array_shift($applicationParts);
                 $this->action = array_shift($applicationParts);
                 $this->get = $applicationParts;
+                //@TODO work this mess!!
                 if (count($_GET) > 0) {
                     $this->get = array_merge($this->get, $_GET);
                 }

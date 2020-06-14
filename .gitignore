@@ -20,6 +20,7 @@ index.php
 post.html
 temp.txt
 tmp.php
+foo
 # exclude local configuration
 .local.conf.php 
 
