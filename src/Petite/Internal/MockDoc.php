@@ -20,7 +20,7 @@ final class MockDoc
 {
 
     /**
-     * Internally uses static instance of 
+     * Internally used static instance of 
      * @var \DOMDocument
      */
     protected static $instance = null;

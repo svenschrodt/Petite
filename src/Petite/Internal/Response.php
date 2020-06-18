@@ -67,7 +67,7 @@ class Response
    }
    
    /**
-    * Sending (custom) HTTP response header
+    * Sending (custom) HTTP response headers
     * 
     * @return \Petite\Internal\Response
     */
@@ -96,13 +96,15 @@ class Response
    
    
    /**
-    * Setter for MIME-tpe of current HTTP response
+    * Setter for MIME-type of current HTTP response
     * 
     * @param string $type
     * @return \Petite\Internal\Response
     */
    public function setType(string $type) : \Petite\Internal\Response
    {
+       
+       //@TODO add optional . '; charset=UTF-8'
        $this->setHeader('Content-Type', $type);
        return $this;
    }

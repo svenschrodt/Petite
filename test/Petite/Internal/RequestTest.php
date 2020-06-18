@@ -19,7 +19,7 @@ class RequestTest extends \PHPUnit\Framework\TestCase
 
     public function testInstatiationOfRequest()
     {
-        $foo = new \Petite\Internal\Request();
+        $foo = new \Petite\Internal\Request(Petite\Internal\ApacheRouter::getInstance());
         $this->assertInstanceOf('\Petite\Internal\Request', $foo);
     }
 

@@ -90,7 +90,7 @@ class App
             $this->action = $this->router->getAction();
        
             // Setting up request and response object
-            $this->request = new Request();
+            $this->request = new Request($this->router );
             $this->response = new Response();
         }
         

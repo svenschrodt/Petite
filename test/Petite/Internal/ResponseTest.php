@@ -40,6 +40,7 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
         $foo->setType($bar);
 //         var_dump($foo);
         $this->assertTrue(is_string($foo->getContent()));
+        var_dump([$foo->getContent(), $bar ]);
         $this->assertTrue($bar=== $foo->getContent());
     }
     

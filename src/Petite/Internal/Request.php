@@ -24,12 +24,22 @@ class Request
      */
     protected $meta;
 
+    
+    /**
+     * Instance of application router
+     *
+     * @var \Petite\Internal\RouterInterface $router
+     */
+    protected $router;
+    
     /**
      * Generic costructor function
      */
-    public function __construct()
+    public function __construct(\Petite\Internal\RouterInterface $router)
     {
         $this->init();
+        //@todo DI for different http server routing
+        $this->router = $router;
     }
 
     /**
@@ -63,29 +73,14 @@ class Request
         if (php_sapi_name() === 'cli') {
             
             //@TODO get Mock/Stub data for testing purposes, if not in http context
-            return;
+            return ;
         }
-       
-        $this->meta = array(
-            'queryString' => $_SERVER['QUERY_STRING'],
-            'uri' => $_SERVER['REQUEST_URI'],
-            'method' => $_SERVER['REQUEST_METHOD'],
-            'serverPort' => $_SERVER['SERVER_PORT'],
-            'serverName' => $_SERVER['SERVER_NAME'],
-            'serverSoftware' => $_SERVER['SERVER_SOFTWARE'],
-            'serverAddress' => $_SERVER['SERVER_ADDR'],
-            'protocol' => $_SERVER['SERVER_PROTOCOL'],
-            'remotePort' => $_SERVER['REMOTE_PORT'],
-            'remoteHost' => $_SERVER['HTTP_HOST'],
-            'remoteAddress' => $_SERVER['REMOTE_ADDR'],
-            'userAgent' => $_SERVER['HTTP_USER_AGENT'],
-            'accept' => $_SERVER['HTTP_ACCEPT'],
-            'acceptLanguage' => $_SERVER['HTTP_ACCEPT_LANGUAGE'],
-            'acceptEncoding' => $_SERVER['HTTP_ACCEPT_ENCODING'],
-            'connection' => $_SERVER['HTTP_CONNECTION']
-        );
-        // extract URL from URI if needed
-        $this->meta['url'] = (strstr($_SERVER['REQUEST_URI'], '?')) ? substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?')) : $_SERVER['REQUEST_URI'];
-        list ($this->meta['scheme'], $this->meta['version']) = explode('/', $this->meta['protocol']);
+        
+        //@todo DI for different http server routing
+        $this->router = ApacheRouter::getInstance();
+      
+        $this->meta = $this->router->getMeta(); 
+        
+        
     }
 }
