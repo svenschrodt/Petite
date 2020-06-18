@@ -6,7 +6,7 @@
  * @author Sven Schrodt<sven@schrodt-service.net>
  * @link https://github.com/svenschrodt/Petite
  * @link https://travis-ci.org/github/svenschrodt/Petite
- * @license https://github.com/svenschrodt/P7Tools/blob/master/LICENSE.md
+ * @license https://github.com/svenschrodt/Petite/blob/master/LICENSE.md
  * @copyright Sven Schrodt<sven@schrodt-service.net>
  * @version 0.0.23
  * @since 2020-06-12
@@ -38,9 +38,7 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue('text/html' === $foo->getContent());
         $bar = 'application/json';
         $foo->setType($bar);
-//         var_dump($foo);
         $this->assertTrue(is_string($foo->getContent()));
-        var_dump([$foo->getContent(), $bar ]);
         $this->assertTrue($bar=== $foo->getContent());
     }
     

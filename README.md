@@ -11,7 +11,7 @@
  
  
 
-Very tiny class collection for building small MVC apps with PHP 7.2*
+Very tiny class collection for building small MVC apps with PHP 7.2+
 
  - Currently Petite only supports http routing for Apache with .htaccess
  
@@ -22,6 +22,9 @@ In most cases you do not have to use this classes, but those in root folder only
  
 ## TODO
   - Supporting several routing mechanism for other http servers via DI to App 
+  - Adding REGEX-based http routing with named patrameters - e.g: 
+      /foo/bar/no/234 ->    controller 'foo'saction 'bar' is being called with 
+      parameter 'no' holding value 234
   
 ## Apendix
 
@@ -30,7 +33,7 @@ In most cases you do not have to use this classes, but those in root folder only
 
 .
 ├── Bootstrap.php
-├── index.php
+├── App.ini
 ├── LICENSE
 ├── phpunit.withLog.xml
 ├── phpunit.xml

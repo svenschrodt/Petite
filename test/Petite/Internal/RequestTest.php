@@ -9,7 +9,7 @@
  * @author Sven Schrodt<sven@schrodt-service.net>
  * @link https://github.com/svenschrodt/Petite
  * @link https://travis-ci.org/github/svenschrodt/Petite
- * @license https://github.com/svenschrodt/P7Tools/blob/master/LICENSE.md
+ * @license https://github.com/svenschrodt/Petite/blob/master/LICENSE.md
  * @copyright Sven Schrodt<sven@schrodt-service.net>
  * @version 0.0.23
  * @since 2020-06-12
