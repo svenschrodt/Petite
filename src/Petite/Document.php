@@ -106,6 +106,7 @@ class Document
         
         // Buffering output for returning? 
         if ($buffer) {
+
             ob_end_flush();
             return $content;
         }
@@ -134,7 +135,7 @@ class Document
      */
     public function setTpl(string $tpl) : \Petite\Document
     {
-        die(getcwd());
+        
         if(!file_exists($tpl)) {
             throw new \InvalidArgumentException(sprintf(Errors::TEMPLATE_NOT_FOUND, $tpl, getcwd()));
         }

@@ -3,7 +3,7 @@
 /**
  * \Petite\Front 
  * 
- * Foundation class representing front controller(s) - managing the 'controller' 
+ * Foundation class representing front controller(s) - managing the 'Controller' 
  * part of MVC 
  *  
  * @package Petite

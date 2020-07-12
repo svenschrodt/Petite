@@ -3,7 +3,7 @@
 /**
  * \Petite\Internal\Errors
  *
- * Class holding error messages
+ * Class holding error messages as *printf - format strings 
  *
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -26,6 +26,16 @@ class Errors
      * @var string
      */
     const TEMPLATE_NOT_FOUND = 'Template file %s not found in %s';
+    
+    
+    /**
+     * Error message for non-existing template files for usage
+     * with *printf functions
+     *
+     * @var string
+     */
+    const CONFIG_NOT_FOUND = 'Configuration file %s not found';
+    
 
     /**
      * Error message for usage of non-existing HTML 5 element name 
@@ -33,7 +43,16 @@ class Errors
      *
      * @var string
      */
-    const INVALID_HTML_ELEMENT = 'The given name %s not valid as element in HTML 5 - try those: %s';
+    const INVALID_HTML_ELEMENT = 'The given name %s is not valid as element in HTML 5 - try those: %s';
+    
+    /**
+     * Error message for usage of invalid property name for model instance
+     * with *printf functions
+     *
+     * @var string
+     */
+    const INVALID_PROPERTY_NAME = 'The given name \'%s\' is not valid in context of class \'%s\'';
+    
 }
     
 

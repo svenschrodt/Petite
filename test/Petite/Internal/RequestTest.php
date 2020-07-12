@@ -3,7 +3,7 @@
  * Testing \Petite\Internal\Request
  * 
  * 
- * @TODO  Mocking http context variables etc. for testing
+ * @TODO  Mocking HTTP context variables etc. for testing
  * 
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>

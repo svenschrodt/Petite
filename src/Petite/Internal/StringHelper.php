@@ -2,7 +2,7 @@
 /**
  * \Petite\Internal\StringHelper
  * 
- * Class with static functions for string operations
+ * Class with static function for managing string data
  *
  * @package Petite
  * @author Sven Schrodt<sven@schrodt-service.net>
@@ -27,7 +27,7 @@ class StringHelper
      * @param boolean $isHtml
      * @return string
      */
-    public static function formatCode(string $code, $isHtml=true)
+    public static function formatCode(string $code, $isHtml=true) : string
     {
         if ($isHtml) {
             return PHP_EOL . $code .PHP_EOL;

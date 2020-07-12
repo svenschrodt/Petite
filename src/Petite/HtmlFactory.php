@@ -57,9 +57,36 @@ class HtmlFactory
         $sel->appendChildren($nodes);
         return $sel;
     }
-   
     
-    public function __call($name, $args)
+    /**
+     * Creating table row (<tr>) element with (head | data) cell contents
+     * 
+     * @param array $data
+     * @param boolean $th
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function tr(array $data, $th=false) :  \Petite\Internal\HtmlElement
+    {
+        $childElement = ($th === true) ? 'th' : 'td';
+        $tr = new HtmlElement('tr');
+        foreach ($data as $val) {
+            $tes[] = new HtmlElement($childElement, $val);
+        }
+        $tr -> appendChildren($tes);
+        return $tr;
+    }
+    
+
+   
+    /**
+     * MAgical intercetopr function returning HTML element by name
+     * 
+     * @param string $name
+     * @param array $args
+     * @throws \InvalidArgumentException
+     * @return \Petite\Internal\HtmlElement
+     */
+    public function __call(string $name, array $args)
     {
         
         if($this->spec->isElement($name)) {

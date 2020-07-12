@@ -30,10 +30,9 @@ spl_autoload_register(function ($className) {
     
     if (substr($className, 0, strlen(PETITE_LIB_DIR)) === PETITE_LIB_DIR) {
         $file = 'src/' . str_replace('\\', '/', $className) . '.php';
-
         // Check if destination class file exists
         if (file_exists($file)) {
-           
+            // including class file once
             require_once $file;
         } else { // throw exception, if not
             throw new \Exception("NO SUCH FILE OR DIRECTORY: {$file} \n class: {$className}");

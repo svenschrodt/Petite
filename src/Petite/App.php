@@ -17,7 +17,9 @@ namespace Petite;
 
 use Petite\Internal\Request;
 use Petite\Internal\Response;
+//@TODO -> dynamic loading
 use Petite\Internal\ApacheRouter;
+use Petite\Internal\Config;
 
 class App
 {
@@ -83,6 +85,7 @@ class App
             $this->appName = $appName;
             
             //@todo DI for different http server routing 
+//             $routerName = Config::getProperty('router');
             $this->router = ApacheRouter::getInstance();
             
             // Setting up, controller, action function and parameters from current request
@@ -132,6 +135,11 @@ class App
         public function setPlainText()
         {
             $this->response->setType('text/plain');
+        }
+        
+        public function getRouter() 
+        {
+            return $this->router;
         }
    
 }

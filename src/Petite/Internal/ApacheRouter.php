@@ -178,7 +178,7 @@ final class ApacheRouter implements RouterInterface
             $path = $tmp[0];
         }
         $this->appHttpRoot = str_replace($this->index,'',$_SERVER['SCRIPT_NAME']);
-        print_r ($this->appHttpRoot);
+//         print_r ($this->appHttpRoot);
         
         
         $contAction = str_replace($this->appHttpRoot,'',$path);

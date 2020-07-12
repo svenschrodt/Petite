@@ -24,6 +24,17 @@ class AppTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf('\Petite\App', $foo);
     }
 
+    
+//     public function testIfRouterIsValid()
+//     {
+// //         \Petite\Internal\RouterInterface $router
+//         $foo = new \Petite\App();
+//         var_dump($foo);
+//         die;
+//         $this->assertInstanceOf('\Petite\Internal\RouterInterface', $foo);
+        
+        
+//     }
  
 }
 
