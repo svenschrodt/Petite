@@ -2,7 +2,8 @@
 /**
  * \Petite\Internal\Model
  *
- * Abstract class for data structures oof an entity - managing 'Model' part of MVC here
+ * Abstract class for data structures oof an entity 
+ * - managing 'Model' part of MVC here
  *
  *
  * @package Petite

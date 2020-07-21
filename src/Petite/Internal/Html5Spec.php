@@ -140,7 +140,7 @@ class Html5Spec
      */
     public function isElement(string $name)
     {
-        //@TODO repai list of valid elements!!
+        //@TODO repair list of valid elements !!
         return true;
         //return in_array($name, $this->elements);
     }

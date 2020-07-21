@@ -1,9 +1,9 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 /**
  * \Petite\Internal\HtmlElement 
  *
- * Representing instances of (nested) HTML elements internally using PHP's DOM API (@see https://www.php.net/manual/en/book.dom.php)
+ * Representing instances of (nested) HTML elements internally using PHP's DOM API 
+ * (@see https://www.php.net/manual/en/book.dom.php)
  * 
  *
  * @package Petite
@@ -73,11 +73,13 @@ class HtmlElement
     {
        
         $this->name = $name;
-        // We just do that, because DOM*-API forces us to so - otherwise DOMNode instances would be read only
+        // We just do that, because DOM*-API forces us to so - otherwise DOMNode 
+        // instances would be read only
         $this->doc = MockDoc::getInstance();
         $this->ele = new \DOMElement($name);
         $this->doc->appendChild($this->ele);
 
+        // Setting up given attributes
         $this->setAttributes($attribs);
         
         // No content, no problem and vice versa!

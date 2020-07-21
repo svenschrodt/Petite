@@ -13,17 +13,17 @@
 
 Very tiny class collection for building small MVC apps with PHP 7.2+
 
- - Currently Petite only supports http routing for Apache with .htaccess
+ - Currently Petite only supports http routing for Apache with .htaccess rewrite rules
  
  
  ### \Petite\Internal
 
 In most cases you do not have to use this classes, but those in root folder only, for building web app(lication)s 
  
-## TODO
+## TO
   - Supporting several routing mechanism for other http servers via DI to App 
-  - Adding REGEX-based http routing with named patrameters - e.g: 
-      /foo/bar/no/234 ->    controller 'foo'saction 'bar' is being called with 
+  - Adding REGEX-based http routing with named parameters - e.g: 
+      /foo/bar/no/234 ->    controller 'foo's action 'bar' is being invoked with 
       parameter 'no' holding value 234
   
 ## Apendix
